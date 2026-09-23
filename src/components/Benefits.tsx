@@ -11,7 +11,7 @@ import {
   Ticket,
   Copy,
 } from "lucide-react";
-import { benefits } from "../data/mockData";
+import { benefits, member } from "../data/mockData";
 import type { Benefit } from "../data/mockData";
 import { PageHeading } from "./Primitives";
 import Modal from "./Modal";
@@ -179,7 +179,7 @@ export default function Benefits({
         </AnimatePresence>
       </motion.div>
       <p className="page-footnote">
-        Thoughtfully selected for your Silver membership.
+        Thoughtfully selected for your {member.tier} membership.
       </p>
     </main>
   );

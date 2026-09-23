@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Brand } from "./Brand";
+import { member } from "../data/mockData";
 import type { Navigate, Page } from "../data/mockData";
 
 const navigation = [
@@ -119,10 +120,10 @@ export default function BottomNavigation({
         </nav>
         <button
           className="profile-button"
-          aria-label="View Julian's membership"
+          aria-label={`View ${member.name}'s membership`}
           onClick={onProfile}
         >
-          JB
+          {member.initials}
           <span className="profile-dot" />
         </button>
       </header>

@@ -9,6 +9,7 @@ import {
   Armchair,
   Coffee,
   ArrowUpRight,
+  Diamond,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { images, member } from "../data/mockData";
@@ -42,13 +43,15 @@ export default function CustomerHome({
             aria-label="Explore your loyalty journey"
           >
             <div className="progress-copy">
-              <span>Your next chapter</span>
-              <span className="text-gold">{8000 - points} points to Gold</span>
-              <span className="progress-fraction">
-                {points.toLocaleString("en-US")} <span>/ 8,000</span>
+              <span>Your {member.tier} world</span>
+              <span className="platinum-status">
+                <Diamond size={13} strokeWidth={1.4} /> Highest tier unlocked
               </span>
             </div>
-            <Progress points={points} />
+            <Progress
+              value={100}
+              label={`${member.tier} membership achieved`}
+            />
           </button>
           <div className="home-stats">
             {[

@@ -1,11 +1,11 @@
-import { Nfc as Contactless, Plane } from "lucide-react";
+import { Nfc as Contactless, Diamond } from "lucide-react";
 import { Brand } from "./Brand";
 import { Counter } from "./Primitives";
 import { member } from "../data/mockData";
 
 export default function MembershipCard({ points }: { points: number }) {
   return (
-    <div className="membership-card">
+    <div className="membership-card membership-platinum">
       <div className="card-orbit card-orbit-one" />
       <div className="card-orbit card-orbit-two" />
       <div className="membership-top">
@@ -13,7 +13,7 @@ export default function MembershipCard({ points }: { points: number }) {
         <Contactless size={30} strokeWidth={1.3} />
       </div>
       <div className="membership-points">
-        <span className="tracking-label">Silver member</span>
+        <span className="tracking-label">{member.tier} member</span>
         <strong>
           <Counter value={points} />
         </strong>
@@ -24,7 +24,7 @@ export default function MembershipCard({ points }: { points: number }) {
           <span>{member.name}</span>
           <small>{member.number}</small>
         </div>
-        <Plane size={36} strokeWidth={0.8} />
+        <Diamond size={36} strokeWidth={0.8} />
       </div>
     </div>
   );

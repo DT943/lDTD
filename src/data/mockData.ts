@@ -3,12 +3,12 @@ export type Page =
 export type Navigate = (page: Page) => void;
 
 export const member = {
-  firstName: "Julian",
-  name: "Julian Bennett",
+  firstName: "Alaa",
+  name: "Alaa Shammout",
+  initials: "AS",
   number: "FC 3287 4410 9926",
-  tier: "Silver",
+  tier: "Platinum",
   points: 7240,
-  goldAt: 8000,
   flights: 12,
   destinations: 5,
   earned: 2760,

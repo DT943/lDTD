@@ -10,12 +10,15 @@ import {
   Armchair,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { images, tierData } from "../data/mockData";
+import { images, member, tierData } from "../data/mockData";
 import type { Navigate } from "../data/mockData";
 import { PageHeading, Progress } from "./Primitives";
 import GlassCard from "./GlassCard";
 
 const icons = [Navigation, UserRound, Star, Crown, Diamond];
+const currentTierIndex = tierData.findIndex(
+  (tier) => tier.name === member.tier,
+);
 
 export default function LoyaltyJourney({
   points,
@@ -24,7 +27,7 @@ export default function LoyaltyJourney({
   points: number;
   navigate: Navigate;
 }) {
-  const [selected, setSelected] = useState(2);
+  const [selected, setSelected] = useState(currentTierIndex);
   const tier = tierData[selected];
   return (
     <main className="page-container journey-page">
@@ -35,24 +38,28 @@ export default function LoyaltyJourney({
       />
       <section className="tier-timeline" aria-label="Membership tiers">
         <div className="tier-line">
-          <div />
+          <div
+            style={{
+              width: `${(currentTierIndex / (tierData.length - 1)) * 100}%`,
+            }}
+          />
         </div>
         {tierData.map((item, i) => {
           const Icon = icons[i];
           return (
             <button
               key={item.name}
-              className={`tier-stop ${i <= 2 ? "reached" : ""} ${i === 2 ? "current" : ""} ${i === selected ? "selected" : ""}`}
+              className={`tier-stop ${i <= currentTierIndex ? "reached" : ""} ${i === currentTierIndex ? "current" : ""} ${i === selected ? "selected" : ""}`}
               onClick={() => setSelected(i)}
               aria-pressed={i === selected}
-              aria-label={`${item.name}${i === 2 ? ", your current tier" : ""}, ${item.threshold.toLocaleString()} points`}
+              aria-label={`${item.name}${i === currentTierIndex ? ", your current tier" : `, ${item.threshold.toLocaleString()} tier points`}`}
             >
               <span className="tier-icon">
                 <Icon size={27} strokeWidth={1.3} />
               </span>
               <span>{item.name}</span>
               <small>
-                {i === 2
+                {i === currentTierIndex
                   ? "You are here"
                   : `${item.threshold.toLocaleString()} pts`}
               </small>
@@ -62,16 +69,17 @@ export default function LoyaltyJourney({
       </section>
       <GlassCard className="journey-progress">
         <div>
-          <span>
-            <span className="text-gold">{8000 - points}</span> points to Gold
+          <span className="platinum-status">
+            <Diamond size={16} strokeWidth={1.4} />
+            {member.tier} member
           </span>
-          <span>
-            {points.toLocaleString("en-US")}{" "}
-            <span className="text-muted">/ 8,000</span>
-          </span>
+          <span>Highest tier achieved</span>
         </div>
-        <Progress points={points} />
-        <p>Your next chapter is closer than you think.</p>
+        <Progress value={100} label={`${member.tier} membership achieved`} />
+        <p>
+          A world of privileges is yours. {points.toLocaleString("en-US")}{" "}
+          points ready for your next journey.
+        </p>
       </GlassCard>
       <motion.section
         key={tier.name}
@@ -81,7 +89,7 @@ export default function LoyaltyJourney({
       >
         <div>
           <span className="tracking-label">
-            {selected === 2
+            {selected === currentTierIndex
               ? "Your current world"
               : `The ${tier.name} experience`}
           </span>
@@ -105,7 +113,7 @@ export default function LoyaltyJourney({
         <div className="upgrade-content">
           <span className="tracking-label">
             <Armchair size={18} />
-            Your next reward
+            Your {member.tier} privilege
           </span>
           <h2>
             Business Class <em>Upgrade</em>
@@ -116,8 +124,8 @@ export default function LoyaltyJourney({
           </button>
         </div>
         <span className="upgrade-badge">
-          <Crown size={16} />
-          Waiting at Gold
+          <Diamond size={16} />
+          Included with {member.tier}
         </span>
       </section>
     </main>

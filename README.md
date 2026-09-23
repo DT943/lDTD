@@ -11,7 +11,7 @@ npm install
 npm run dev -- --host 127.0.0.1 --port 5188 --strictPort
 ```
 
-Open `http://127.0.0.1:5188` to go directly to Julian's customer home.
+Open `http://127.0.0.1:5188` to go directly to Alaa Shammout's customer home.
 
 ```sh
 npm run build
@@ -22,17 +22,19 @@ The production files are generated in `dist/` and can be served by any static ho
 
 ## Experience
 
-| Route       | Experience                                                        |
-| ----------- | ----------------------------------------------------------------- |
-| `#home`     | Julian's Silver membership, points, upcoming trip, benefits       |
-| `#journey`  | Interactive tier progression and next reward                      |
-| `#benefits` | Five privileges, category filters, unlockable member passes       |
-| `#passport` | Geographic world map, destination details, zoom, travel totals    |
-| `#trip`     | Beirut departure, flight details, hotel, itinerary, lounge access |
-| `#reward`   | Gift reveal and 500 bonus points, credited once per session       |
-| `#final`    | Cinematic closing brand moment                                    |
+| Route       | Experience                                                           |
+| ----------- | -------------------------------------------------------------------- |
+| `#home`     | Alaa Shammout's Platinum membership, points, upcoming trip, benefits |
+| `#journey`  | Interactive tier history and Platinum privileges                     |
+| `#benefits` | Five privileges, category filters, unlockable member passes          |
+| `#passport` | Geographic world map, destination details, zoom, travel totals       |
+| `#trip`     | Beirut departure, flight details, hotel, itinerary, lounge access    |
+| `#reward`   | Gift reveal and 500 bonus points, credited once per session          |
+| `#final`    | Cinematic closing brand moment                                       |
 
 The brief gives Beirut–Dubai as the upcoming route and Beirut as the destination-page example. The trip screen treats Beirut as the departure city; the flight details, hotel, and itinerary follow the Dubai journey. Home statistics describe the current membership period; passport statistics describe the lifetime travel story, with four featured destinations.
+
+Alaa holds Platinum, the highest membership tier. The displayed points are the available reward balance, independent of attained membership status. Every screen carries a subtle footer signature: “Thoughtfully crafted by Julian.”
 
 ## Project structure
 

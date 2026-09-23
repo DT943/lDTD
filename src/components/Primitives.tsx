@@ -29,20 +29,21 @@ export function Counter({ value }: { value: number }) {
   );
 }
 
-export function Progress({ points }: { points: number }) {
+export function Progress({ value, label }: { value: number; label: string }) {
   const reduced = useReducedMotion();
+  const percentage = Math.max(0, Math.min(value, 100));
   return (
     <div
       className="progress-track"
       role="progressbar"
-      aria-label="Progress to Gold"
-      aria-valuenow={points}
+      aria-label={label}
+      aria-valuenow={percentage}
       aria-valuemin={0}
-      aria-valuemax={8000}
+      aria-valuemax={100}
     >
       <motion.div
         initial={{ width: 0 }}
-        animate={{ width: `${Math.min((points / 8000) * 100, 100)}%` }}
+        animate={{ width: `${percentage}%` }}
         transition={{ duration: reduced ? 0 : 1.3, ease: [0.22, 1, 0.36, 1] }}
       />
     </div>

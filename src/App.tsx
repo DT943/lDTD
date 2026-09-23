@@ -5,7 +5,7 @@ import {
   motion,
   useReducedMotion,
 } from "framer-motion";
-import { ArrowUpRight, Star } from "lucide-react";
+import { ArrowUpRight, Diamond } from "lucide-react";
 import { member } from "./data/mockData";
 import type { Benefit, Page } from "./data/mockData";
 import CustomerHome from "./components/CustomerHome";
@@ -18,6 +18,7 @@ import BottomNavigation from "./components/BottomNavigation";
 import CinematicBackground from "./components/CinematicBackground";
 import MembershipCard from "./components/MembershipCard";
 import Modal from "./components/Modal";
+import CreatorCredit from "./components/CreatorCredit";
 
 const pages = new Set<Page>([
   "home",
@@ -133,12 +134,17 @@ export default function App() {
             {screen}
           </motion.div>
         </AnimatePresence>
-        {page !== "final" && (
+        {page === "final" ? (
+          <footer className="final-footer">
+            <CreatorCredit />
+          </footer>
+        ) : (
           <footer className="app-footer">
             <span>
               FlyCham Loyalty <span className="footer-separator">/</span> Tap
               into your world
             </span>
+            <CreatorCredit />
             <button onClick={() => navigate("final")}>
               A world of possibilities <ArrowUpRight size={15} />
             </button>
@@ -150,13 +156,13 @@ export default function App() {
       )}
       {profileOpen && (
         <Modal
-          title="Your world, Julian."
+          title={`Your world, ${member.firstName}.`}
           onClose={() => setProfileOpen(false)}
         >
           <MembershipCard points={points} />
           <div className="profile-summary">
-            <Star size={18} />
-            <span>Silver member · Since March 2024</span>
+            <Diamond size={18} />
+            <span>{member.tier} member · Since March 2024</span>
           </div>
           <div className="detail-rows">
             <span>

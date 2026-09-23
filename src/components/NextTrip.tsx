@@ -11,7 +11,7 @@ import {
   Luggage,
   Armchair,
 } from "lucide-react";
-import { images, benefits } from "../data/mockData";
+import { images, benefits, member } from "../data/mockData";
 import type { Benefit, Navigate } from "../data/mockData";
 import { BackButton } from "./Primitives";
 import Modal from "./Modal";
@@ -127,7 +127,7 @@ export default function NextTrip({
               </p>
               <div className="detail-rows">
                 <span>
-                  Passenger<strong>Julian Bennett</strong>
+                  Passenger<strong>{member.name}</strong>
                 </span>
                 <span>
                   Cabin<strong>Economy · Seat 14A</strong>
