@@ -1,0 +1,228 @@
+/* Light mode is defined in styles.css. These overrides preserve the midnight palette. */
+:root[data-theme="dark"] {
+  --color-canvas: #080e18;
+  --color-surface: #101824;
+  --color-ink: #f3f2ee;
+  --color-line: #ffffff20;
+  --color-gold: #c9af79;
+  --color-muted: #99a3b2;
+  color-scheme: dark;
+}
+:root[data-theme="dark"] ::selection {
+  background: #c9af7940;
+}
+:root[data-theme="dark"] .button-gold {
+  color: #121921;
+  box-shadow: 0 4px 20px #c9af7910;
+}
+:root[data-theme="dark"] .button-gold:hover {
+  box-shadow: 0 4px 28px #c9af792b;
+}
+:root[data-theme="dark"] .button-outline {
+  border: 1px solid #a98e5b;
+  background: #c9af7907;
+}
+:root[data-theme="dark"] .button-outline:hover {
+  background: #c9af7917;
+}
+:root[data-theme="dark"] .text-link:hover {
+  color: #f2deb3;
+}
+:root[data-theme="dark"] .icon-button:hover {
+  border-color: #c9af7977;
+  background: #1b2430;
+}
+:root[data-theme="dark"] .glass-card {
+  background: linear-gradient(135deg, #1823324a, #080e1840);
+  box-shadow: 0 16px 60px #00000010;
+}
+:root[data-theme="dark"] .cinematic-fade {
+  background: linear-gradient(
+    180deg,
+    #080e1825,
+    transparent 45%,
+    #080e18c9 100%
+  );
+}
+:root[data-theme="dark"] .cinematic-subtle {
+  opacity: 0.28;
+}
+:root[data-theme="dark"] .cinematic-subtle .cinematic-fade {
+  background: linear-gradient(180deg, #080e1840, #080e1880 30%, #080e18 94%);
+}
+:root[data-theme="dark"] .profile-button {
+  background: linear-gradient(135deg, #4c545c, #222b36);
+}
+:root[data-theme="dark"] .more-menu {
+  background: #101824f5;
+  box-shadow: 0 22px 80px #0009;
+}
+:root[data-theme="dark"] .more-menu > button:hover {
+  background: #ffffff07;
+}
+:root[data-theme="dark"] .progress-track {
+  background: #27323f;
+}
+:root[data-theme="dark"] .progress-track > div {
+  background: linear-gradient(90deg, #a78a53, #e6ca93);
+  box-shadow: 0 0 12px #c9af794d;
+}
+:root[data-theme="dark"] .membership-card {
+  border: 1px solid #a3a4a783;
+  background:
+    repeating-linear-gradient(
+      128deg,
+      #ffffff04 0px,
+      #ffffff04 1px,
+      #00000005 1px,
+      #00000005 3px
+    ),
+    linear-gradient(126deg, #727579, #4b5055 18%, #272d34 58%, #62686c 100%);
+  box-shadow:
+    inset 0 1px 1px #ffffff60,
+    0 20px 60px #0003;
+}
+:root[data-theme="dark"] .membership-platinum {
+  border-color: #c6ced583;
+  background:
+    repeating-linear-gradient(
+      128deg,
+      #ffffff04 0px,
+      #ffffff04 1px,
+      #00000005 1px,
+      #00000005 3px
+    ),
+    linear-gradient(126deg, #5d6873, #333f4e 24%, #202b39 62%, #586470);
+}
+:root[data-theme="dark"] .membership-top .brand-mark {
+  color: #ece9df;
+}
+:root[data-theme="dark"] .membership-bottom small {
+  color: #d1d4d6;
+}
+:root[data-theme="dark"] .membership-bottom > svg {
+  color: #e4dbbe;
+}
+:root[data-theme="dark"] .card-orbit {
+  border: 1px solid #ffffff18;
+  box-shadow: 0 -15px 25px #ffffff04;
+}
+:root[data-theme="dark"] .card-orbit-one {
+  background: linear-gradient(180deg, #111a2270, #ffffff07);
+}
+:root[data-theme="dark"] .benefit-mini {
+  background: linear-gradient(125deg, #14203145, #0a111b40);
+}
+:root[data-theme="dark"] .benefit-mini:hover {
+  border-color: #c9af7959;
+  background: #17233370;
+}
+:root[data-theme="dark"] .filter-row button.active {
+  border-color: #c9af7955;
+  background: #c9af790d;
+}
+:root[data-theme="dark"] .benefit-category {
+  background: #070e19a8;
+}
+:root[data-theme="dark"] .unlocked-badge {
+  background: #080e18d9;
+}
+:root[data-theme="dark"] .tier-line {
+  background: #344050;
+}
+:root[data-theme="dark"] .tier-icon {
+  border: 1px solid #566172;
+}
+:root[data-theme="dark"] .tier-stop.current .tier-icon {
+  color: #f9e6ba;
+  background: radial-gradient(circle at 40% 30%, #bc9c6040, #1f2730);
+  box-shadow:
+    0 0 22px #d5b87a33,
+    inset 0 0 15px #d5b87a11;
+}
+:root[data-theme="dark"] .tier-stop.selected .tier-icon {
+  outline: 3px solid #e0c49213;
+  border-color: #f2d59a;
+}
+:root[data-theme="dark"] .pin-halo {
+  fill: #d6b77e0d;
+  stroke: #c9af7945;
+}
+:root[data-theme="dark"] .pin-outer {
+  stroke: #f6dda7;
+}
+:root[data-theme="dark"] .destination-tabs button.active {
+  border-color: #bda26d7a;
+  background: #c9af790b;
+}
+:root[data-theme="dark"] .destination-detail {
+  background: #111a254d;
+}
+:root[data-theme="dark"] .passport-stats {
+  background: #14203230;
+}
+:root[data-theme="dark"] .trip-special {
+  background: #111c283d;
+}
+:root[data-theme="dark"] .gift-card {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #ffffff02 0px,
+      #ffffff02 1px,
+      #00000002 1px,
+      #00000002 3px
+    ),
+    linear-gradient(125deg, #453823, #111721 65%);
+  box-shadow:
+    0 0 1px 4px #d9b46712,
+    0 22px 50px #000a,
+    0 0 60px #b68c3730;
+  color: #e2c488;
+}
+:root[data-theme="dark"] .gift-card .brand {
+  color: #eed9a8;
+}
+:root[data-theme="dark"] .gift-card .brand-mark {
+  color: #dfc181;
+}
+:root[data-theme="dark"] .revealed-reward {
+  background: linear-gradient(135deg, #2d291e55, #101925c9);
+  box-shadow: 0 0 70px #c9af7910;
+}
+:root[data-theme="dark"] .final-content > .button {
+  background: #080e1866;
+  border-color: #c8b484;
+  color: #f2e5c8;
+}
+:root[data-theme="dark"] .final-content > p {
+  color: #d5d8db;
+}
+:root[data-theme="dark"] .modal-backdrop {
+  background: #030810bc;
+}
+:root[data-theme="dark"] .modal-panel {
+  box-shadow: 0 30px 100px #0008;
+}
+@media (max-width: 640px) {
+  :root[data-theme="dark"] .bottom-navigation {
+    background: #0d1622e8;
+    box-shadow: 0 -10px 40px #0002;
+  }
+  :root[data-theme="dark"] .bottom-navigation > button.active svg {
+    filter: drop-shadow(0 0 8px #c9af7940);
+  }
+}
+:root[data-theme="dark"] .skip-link {
+  color: #080e18;
+}
+:root[data-theme="dark"] .cinematic-background img {
+  opacity: 1;
+  filter: none;
+}
+:root[data-theme="dark"] .benefit-card {
+  box-shadow: none;
+}
+:root[data-theme="dark"] #map-dots circle {
+  fill: #476277;
+}

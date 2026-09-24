@@ -1,9 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080e18" />
+    <meta name="theme-color" content="#f8f7f3" />
+    <script>
+      // Restore the theme before the first paint; light is the default.
+      try {
+        const theme =
+          localStorage.getItem("flycham-theme-v1") === "dark"
+            ? "dark"
+            : "light";
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content =
+          theme === "dark" ? "#080e18" : "#f8f7f3";
+      } catch {
+        // Browser storage may be disabled.
+      }
+    </script>
     <meta
       name="description"
       content="One tap. A world of possibilities. Your personal FlyCham loyalty experience."

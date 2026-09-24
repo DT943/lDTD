@@ -44,7 +44,9 @@ Alaa holds Platinum, the highest membership tier. The displayed points are the a
 - `src/styles.css`: Tailwind theme, shared visual styles, responsive layouts, and reduced-motion support.
 - `public/images/`: locally bundled imagery.
 
-The visual system pairs midnight navy (`#080e18`) and muted gold (`#c9af79`) with DM Sans and Cormorant Garamond. Buttons, labels, membership cards, and map controls are real accessible UI. The map supports keyboard selection; dialogs trap focus, close with Escape, and restore focus to their trigger. Motion respects the system's reduced-motion setting.
+The light visual system pairs soft ivory (`#f8f7f3`), white surfaces, slate text (`#23313e`), and warm gold (`#87652e`) with DM Sans and Cormorant Garamond. The membership card uses a silver platinum finish; travel photography keeps contrasting light text. Buttons, labels, membership cards, and map controls are real accessible UI. The map supports keyboard selection; dialogs trap focus, close with Escape, and restore focus to their trigger. Motion respects the system's reduced-motion setting.
+
+The sun/moon button beside the profile switches every screen between light and midnight navy themes. Light is the default; the choice is saved locally and restored before the first paint. Theme styles live in `src/styles.css` and `src/dark-theme.css`.
 
 ## Image and data sources
 

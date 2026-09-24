@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Brand } from "./Brand";
+import ThemeToggle from "./ThemeToggle";
 import { member } from "../data/mockData";
 import type { Navigate, Page } from "../data/mockData";
 
@@ -118,14 +119,17 @@ export default function BottomNavigation({
             More <ChevronDown size={14} />
           </button>
         </nav>
-        <button
-          className="profile-button"
-          aria-label={`View ${member.name}'s membership`}
-          onClick={onProfile}
-        >
-          {member.initials}
-          <span className="profile-dot" />
-        </button>
+        <div className="header-actions">
+          <ThemeToggle />
+          <button
+            className="profile-button"
+            aria-label={`View ${member.name}'s membership`}
+            onClick={onProfile}
+          >
+            {member.initials}
+            <span className="profile-dot" />
+          </button>
+        </div>
       </header>
       <nav className="bottom-navigation" aria-label="Mobile navigation">
         {navigation.map((item) => (
