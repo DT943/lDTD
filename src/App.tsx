@@ -19,6 +19,7 @@ import CinematicBackground from "./components/CinematicBackground";
 import MembershipCard from "./components/MembershipCard";
 import Modal from "./components/Modal";
 import CreatorCredit from "./components/CreatorCredit";
+import { useExperienceMotion } from "./components/ExperienceMotion";
 
 const pages = new Set<Page>([
   "home",
@@ -41,6 +42,8 @@ export default function App() {
   const [unlocked, setUnlocked] = useState<string[]>([]);
   const [activePass, setActivePass] = useState<Benefit | null>(null);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [selectedDestination, setSelectedDestination] = useState(0);
+  const { enabled: motionEnabled } = useExperienceMotion();
   const reduced = useReducedMotion();
   const points = member.points + (claimed ? 500 : 0);
   const navigate = useCallback((next: Page) => {
@@ -68,6 +71,13 @@ export default function App() {
         navigate={navigate}
         points={points}
         rewardClaimed={claimed}
+        onProfile={() => setProfileOpen(true)}
+        onDestination={(index) => {
+          setSelectedDestination(index);
+          navigate("passport");
+        }}
+        onUnlock={unlock}
+        unlocked={unlocked}
       />
     ) : page === "benefits" ? (
       <Benefits unlocked={unlocked} onUnlock={unlock} />
@@ -84,7 +94,10 @@ export default function App() {
           </div>
         }
       >
-        <TravelPassport />
+        <TravelPassport
+          selected={selectedDestination}
+          onSelect={setSelectedDestination}
+        />
       </Suspense>
     ) : page === "trip" ? (
       <NextTrip navigate={navigate} onUnlock={unlock} unlocked={unlocked} />
@@ -98,7 +111,7 @@ export default function App() {
       <FinalExperience navigate={navigate} />
     );
   return (
-    <MotionConfig reducedMotion="user">
+    <MotionConfig reducedMotion={motionEnabled ? "user" : "always"}>
       <a
         className="skip-link"
         href="#main-content"
@@ -110,7 +123,7 @@ export default function App() {
         Skip to content
       </a>
       <div className={`app-shell page-${page}`}>
-        <CinematicBackground subtle />
+        <CinematicBackground subtle home={page === "home"} />
         <BottomNavigation
           page={page}
           navigate={navigate}
@@ -123,7 +136,7 @@ export default function App() {
             initial={{ opacity: 0, y: reduced ? 0 : 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: reduced ? 0 : -8 }}
-            transition={{ duration: reduced ? 0 : 0.23 }}
+            transition={{ duration: reduced || !motionEnabled ? 0 : 0.23 }}
             onAnimationComplete={() => {
               if (window.location.hash)
                 document

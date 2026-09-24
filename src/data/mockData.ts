@@ -14,6 +14,8 @@ export const member = {
   earned: 2760,
 };
 export const images = {
+  hero: "/images/flight-at-dusk.png",
+  gift: "/images/golden-gift.png",
   clouds: "/images/clouds.png",
   dubai: "/images/dubai.png",
   beirut: "/images/beirut.jpg",

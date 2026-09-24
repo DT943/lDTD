@@ -2,15 +2,21 @@ import { images } from "../data/mockData";
 
 export default function CinematicBackground({
   subtle = false,
+  home = false,
 }: {
   subtle?: boolean;
+  home?: boolean;
 }) {
   return (
     <div
-      className={`cinematic-background ${subtle ? "cinematic-subtle" : ""}`}
+      className={`cinematic-background ${subtle ? "cinematic-subtle" : ""} ${home ? "cinematic-home" : ""}`}
       aria-hidden="true"
     >
-      <img src={images.clouds} alt="" fetchPriority="high" />
+      <img
+        src={home ? images.hero : images.clouds}
+        alt=""
+        fetchPriority="high"
+      />
       <div className="cinematic-fade" />
     </div>
   );

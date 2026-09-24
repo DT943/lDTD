@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Gift, ArrowRight, Coins, Check } from "lucide-react";
-import { Brand } from "./Brand";
+import { ArrowRight, Coins, Check } from "lucide-react";
+import { images } from "../data/mockData";
+import { useExperienceMotion } from "./ExperienceMotion";
 import { Particles } from "./CinematicBackground";
 import { BackButton } from "./Primitives";
 import type { Navigate } from "../data/mockData";
@@ -14,6 +15,7 @@ export default function RewardReveal({
   onReveal: () => void;
   navigate: Navigate;
 }) {
+  const { enabled } = useExperienceMotion();
   return (
     <main className="page-container reward-page">
       <BackButton navigate={navigate} />
@@ -42,17 +44,16 @@ export default function RewardReveal({
             >
               <div className="gift-aura" />
               <motion.button
-                className="gift-card"
+                className="gift-card gift-sculpture"
                 onClick={onReveal}
-                whileHover={{ rotate: 0, y: -8 }}
-                whileTap={{ scale: 0.97 }}
+                whileHover={enabled ? { rotate: 0, y: -8 } : {}}
+                whileTap={enabled ? { scale: 0.97 } : {}}
                 aria-label="Open your surprise reward"
               >
-                <Gift size={71} strokeWidth={1.05} />
-                <Brand small />
-                <span className="tracking-label">
-                  A more rewarding tomorrow
-                </span>
+                <img
+                  src={images.gift}
+                  alt="A sculpted champagne-gold gift box"
+                />
               </motion.button>
               <button className="text-link" onClick={onReveal}>
                 Tap to reveal your reward <ArrowRight size={17} />

@@ -1,204 +1,230 @@
 import {
   ArrowRight,
-  CalendarDays,
-  Gift,
-  Luggage,
+  ArrowUpRight,
+  Check,
+  Coins,
+  Diamond,
   MapPin,
   Plane,
-  Star,
-  Armchair,
-  Coffee,
-  ArrowUpRight,
-  Diamond,
 } from "lucide-react";
-import { motion } from "framer-motion";
-import { images, member } from "../data/mockData";
-import type { Navigate } from "../data/mockData";
-import MembershipCard from "./MembershipCard";
-import GlassCard from "./GlassCard";
-import { Counter, Progress, RoundArrow } from "./Primitives";
+import { images, member, benefits, destinations } from "../data/mockData";
+import type { Benefit, Navigate } from "../data/mockData";
+import { Counter } from "./Primitives";
+import CardExperience from "./CardExperience";
+import Reveal from "./Reveal";
+
+const featuredBenefits = [benefits[2], benefits[1], benefits[0]];
 
 export default function CustomerHome({
   navigate,
   points,
   rewardClaimed,
+  onProfile,
+  onDestination,
+  onUnlock,
+  unlocked,
 }: {
   navigate: Navigate;
   points: number;
   rewardClaimed: boolean;
+  onProfile: () => void;
+  onDestination: (index: number) => void;
+  onUnlock: (benefit: Benefit) => void;
+  unlocked: string[];
 }) {
   return (
-    <main className="home-page page-container">
+    <main className="home-page page-container luxury-home">
       <section className="home-intro">
-        <div className="home-greeting">
+        <Reveal className="home-greeting">
           <h1 tabIndex={-1}>
             Welcome back,
             <br />
-            <em>{member.firstName}</em>
+            <em>{member.firstName}.</em>
           </h1>
-          <p>We remember your journey.</p>
-          <button
-            className="home-progress"
-            onClick={() => navigate("journey")}
-            aria-label="Explore your loyalty journey"
-          >
-            <div className="progress-copy">
-              <span>Your {member.tier} world</span>
-              <span className="platinum-status">
-                <Diamond size={13} strokeWidth={1.4} /> Highest tier unlocked
+          <p>Your next chapter looks extraordinary.</p>
+          <div className="hero-actions">
+            <button
+              className="button button-gold"
+              onClick={() => navigate("benefits")}
+            >
+              Explore my privileges <ArrowRight size={17} />
+            </button>
+            <button className="text-link" onClick={onProfile}>
+              View my membership
+            </button>
+          </div>
+        </Reveal>
+        <Reveal className="membership-wrap" delay={0.12}>
+          <CardExperience points={points} onProfile={onProfile} />
+        </Reveal>
+      </section>
+      <Reveal>
+        <section
+          className="membership-summary"
+          aria-label="Your membership at a glance"
+        >
+          {[
+            { Icon: Plane, value: member.flights, label: "Flights" },
+            { Icon: MapPin, value: member.destinations, label: "Destinations" },
+            { Icon: Coins, value: member.earned, label: "Points earned" },
+          ].map(({ Icon, value, label }) => (
+            <div key={label}>
+              <Icon size={25} strokeWidth={1.3} />
+              <span>
+                <strong>
+                  <Counter value={value} />
+                </strong>
+                <small>{label}</small>
               </span>
             </div>
-            <Progress
-              value={100}
-              label={`${member.tier} membership achieved`}
-            />
-          </button>
-          <div className="home-stats">
-            {[
-              { icon: Plane, value: 12, label: "Flights" },
-              { icon: MapPin, value: 5, label: "Destinations" },
-              { icon: Star, value: 2760, label: "Points earned" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <stat.icon size={25} strokeWidth={1.4} />
-                <span>
-                  <strong>
-                    <Counter value={stat.value} />
-                  </strong>
-                  <small>{stat.label}</small>
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <motion.div
-          className="membership-wrap"
-          whileHover={{ y: -5, rotate: 1 }}
-          transition={{ duration: 0.35 }}
-        >
-          <MembershipCard points={points} />
-          <span className="card-caption">
-            A world of recognition. Always with you.
-          </span>
-        </motion.div>
-      </section>
-      <section className="home-feature-grid">
-        <button
-          className="trip-card image-card"
-          onClick={() => navigate("trip")}
-          aria-label="View your upcoming trip from Beirut to Dubai"
-        >
-          <img
-            src={images.dubai}
-            alt="Dubai skyline glowing above the water at dusk"
-          />
-          <span className="image-shade" />
-          <span className="trip-card-heading">Your Upcoming Trip</span>
-          <span className="trip-card-body">
-            <span className="trip-route">
-              Beirut <ArrowRight strokeWidth={1.1} /> Dubai
-            </span>
-            <span className="trip-card-meta">
-              <span>
-                <CalendarDays size={17} />
-                12 Nov 2026
-              </span>
-              <span>
-                <Luggage size={17} />3 days · Economy
-              </span>
-            </span>
-          </span>
-          <span className="trip-card-caption">New cities. A brighter you.</span>
-          <RoundArrow label="Explore trip" />
-        </button>
-        <GlassCard className="home-reward">
-          <Gift size={40} strokeWidth={1.2} />
-          <h2>
-            {rewardClaimed ? (
-              <>
-                A little more
-                <br />
-                to look forward to.
-              </>
-            ) : (
-              <>
-                A little something,
-                <br />
-                just for you.
-              </>
-            )}
-          </h2>
-          <p>
-            {rewardClaimed
-              ? "Your 500 bonus points are ready for your next chapter."
-              : "Your next journey starts with a surprise."}
-          </p>
+          ))}
           <button
-            className="button button-gold"
-            onClick={() => navigate("reward")}
+            onClick={() => navigate("journey")}
+            aria-label="Explore your Platinum loyalty journey"
           >
-            {rewardClaimed ? "View my reward" : "Reveal my reward"}
-            <ArrowRight size={18} />
+            <Diamond size={27} strokeWidth={1.2} />
+            <span>
+              <strong>{member.tier}</strong>
+              <small>Highest tier unlocked</small>
+            </span>
+            <ArrowUpRight size={15} />
           </button>
-          <span className="tracking-label">Loyalty brings more</span>
-        </GlassCard>
-      </section>
-      <section className="home-benefits">
+        </section>
+      </Reveal>
+      <Reveal className="home-horizon">
         <div className="section-heading">
           <h2>
-            Your world, with <em>privileges</em>
+            Next on your <em>horizon.</em>
+          </h2>
+        </div>
+        <section className="home-feature-grid">
+          <button
+            className="trip-card image-card"
+            onClick={() => navigate("trip")}
+            aria-label="View your upcoming trip from Beirut to Dubai"
+          >
+            <img
+              src={images.dubai}
+              alt="Dubai skyline glowing above the water at dusk"
+            />
+            <span className="image-shade" />
+            <span className="trip-card-body">
+              <span className="trip-card-heading">Your upcoming trip</span>
+              <span className="trip-route">
+                Beirut <ArrowRight strokeWidth={1.1} /> Dubai
+              </span>
+              <span className="trip-card-meta">
+                12 Nov 2026 <span>·</span> 3 days <span>·</span> Economy
+              </span>
+              <span className="button button-gold">
+                View trip <ArrowRight size={17} />
+              </span>
+            </span>
+          </button>
+          <div
+            className={`home-reward ${rewardClaimed ? "reward-is-claimed" : ""}`}
+          >
+            <div className="gift-display" aria-hidden="true">
+              <img src={images.gift} alt="" />
+            </div>
+            <div className="home-reward-content">
+              <h2>
+                {rewardClaimed ? (
+                  <>
+                    A little more
+                    <br />
+                    to look forward to.
+                  </>
+                ) : (
+                  <>
+                    A little something,
+                    <br />
+                    just for you.
+                  </>
+                )}
+              </h2>
+              <p>
+                {rewardClaimed
+                  ? "Your 500 bonus points are ready."
+                  : "500 bonus points are waiting."}
+              </p>
+              <button
+                className="button button-gold"
+                onClick={() => navigate("reward")}
+              >
+                {rewardClaimed ? "View my reward" : "Reveal my reward"}
+                {rewardClaimed ? <Check size={17} /> : <ArrowRight size={17} />}
+              </button>
+            </div>
+          </div>
+        </section>
+      </Reveal>
+      <Reveal className="home-benefits">
+        <div className="section-heading">
+          <h2>
+            Privileges, <em>beautifully considered.</em>
           </h2>
           <button className="text-link" onClick={() => navigate("benefits")}>
             Explore all benefits <ArrowRight size={17} />
           </button>
         </div>
-        <div className="benefit-rail">
-          {[
-            {
-              icon: Armchair,
-              title: "Lounge Access",
-              subtitle: "A more relaxed you",
-            },
-            {
-              icon: Luggage,
-              title: "Extra Baggage",
-              subtitle: "Room for more memories",
-            },
-            {
-              icon: Plane,
-              title: "Priority Boarding",
-              subtitle: "Time is a privilege",
-            },
-            {
-              icon: Coffee,
-              title: "Airport Coffee",
-              subtitle: "A perfect beginning",
-            },
-          ].map((benefit) => (
+        <div className="privilege-gallery">
+          {featuredBenefits.map((benefit) => (
             <button
-              className="benefit-mini"
-              key={benefit.title}
-              onClick={() => navigate("benefits")}
+              className="privilege-photo image-card"
+              key={benefit.id}
+              onClick={() => onUnlock(benefit)}
+              aria-label={`${unlocked.includes(benefit.id) ? "View pass for" : "Unlock"} ${benefit.title}`}
             >
-              <benefit.icon size={30} strokeWidth={1.3} />
-              <span>
+              <img
+                src={benefit.id === "boarding" ? images.cabin : benefit.image}
+                alt=""
+                loading="lazy"
+              />
+              <span className="image-shade" />
+              {unlocked.includes(benefit.id) && (
+                <span className="photo-unlocked">
+                  <Check size={12} /> Unlocked
+                </span>
+              )}
+              <span className="photo-label">
                 {benefit.title}
-                <small>{benefit.subtitle}</small>
+                <ArrowUpRight size={20} />
               </span>
-              <ArrowUpRight size={16} className="mini-arrow" />
             </button>
           ))}
         </div>
-      </section>
-      <button className="passport-teaser" onClick={() => navigate("passport")}>
-        <span>
-          <MapPin size={19} />
-          Every destination tells your story.
-        </span>
-        <span>
-          Open your travel passport <ArrowRight size={17} />
-        </span>
-      </button>
+      </Reveal>
+      <Reveal className="home-destinations">
+        <div className="section-heading">
+          <h2>
+            Every place. <em>A part of you.</em>
+          </h2>
+          <button className="text-link" onClick={() => navigate("passport")}>
+            Open travel passport <ArrowRight size={17} />
+          </button>
+        </div>
+        <div className="destination-gallery">
+          {destinations.map((destination, index) => (
+            <button
+              className="destination-postcard image-card"
+              key={destination.code}
+              onClick={() => onDestination(index)}
+              aria-label={`Explore ${destination.name} in your travel passport`}
+            >
+              <img src={destination.image} alt="" loading="lazy" />
+              <span className="image-shade" />
+              <span className="photo-label">
+                <span>
+                  {destination.name}
+                  <small>{destination.country}</small>
+                </span>
+                <ArrowRight size={18} />
+              </span>
+            </button>
+          ))}
+        </div>
+      </Reveal>
     </main>
   );
 }

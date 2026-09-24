@@ -9,10 +9,13 @@ import {
   Plane,
   Sparkles,
   ArrowUpRight,
+  Pause,
+  Play,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Brand } from "./Brand";
 import ThemeToggle from "./ThemeToggle";
+import { useExperienceMotion } from "./ExperienceMotion";
 import { member } from "../data/mockData";
 import type { Navigate, Page } from "../data/mockData";
 
@@ -58,6 +61,7 @@ export default function BottomNavigation({
   onProfile: () => void;
 }) {
   const [moreOpen, setMoreOpen] = useState(false);
+  const motionPreference = useExperienceMotion();
   const menu = useRef<HTMLDivElement>(null);
   const moreButton = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -105,14 +109,23 @@ export default function BottomNavigation({
               onClick={() => go(item.id)}
               aria-current={page === item.id ? "page" : undefined}
             >
+              {page === item.id && (
+                <motion.span
+                  className="nav-active-pill"
+                  layoutId="desktop-navigation"
+                  transition={{ type: "spring", stiffness: 360, damping: 32 }}
+                />
+              )}
               {item.label}
             </button>
           ))}
           <button
-            ref={moreButton}
             data-more-toggle
             className={isMore || moreOpen ? "active" : ""}
-            onClick={() => setMoreOpen(!moreOpen)}
+            onClick={(event) => {
+              moreButton.current = event.currentTarget;
+              setMoreOpen(!moreOpen);
+            }}
             aria-expanded={moreOpen}
             aria-controls="more-menu"
           >
@@ -146,7 +159,10 @@ export default function BottomNavigation({
         <button
           data-more-toggle
           className={isMore || moreOpen ? "active" : ""}
-          onClick={() => setMoreOpen(!moreOpen)}
+          onClick={(event) => {
+            moreButton.current = event.currentTarget;
+            setMoreOpen(!moreOpen);
+          }}
           aria-expanded={moreOpen}
           aria-controls="more-menu"
         >
@@ -175,6 +191,23 @@ export default function BottomNavigation({
                 <ArrowUpRight size={16} />
               </button>
             ))}
+            <button
+              className="motion-control"
+              onClick={motionPreference.toggle}
+              aria-pressed={!motionPreference.enabled}
+            >
+              {motionPreference.enabled ? (
+                <Pause size={18} />
+              ) : (
+                <Play size={18} />
+              )}
+              <span>
+                {motionPreference.enabled
+                  ? "Pause animations"
+                  : "Resume animations"}
+                <small>Make your experience comfortable</small>
+              </span>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

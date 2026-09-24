@@ -7,10 +7,14 @@ import "@fontsource/cormorant-garamond/latin-400.css";
 import "@fontsource/cormorant-garamond/latin-500-italic.css";
 import "./styles.css";
 import "./dark-theme.css";
+import "./experience.css";
 import App from "./App";
+import { ExperienceMotion } from "./components/ExperienceMotion";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <ExperienceMotion>
+      <App />
+    </ExperienceMotion>
   </React.StrictMode>,
 );
